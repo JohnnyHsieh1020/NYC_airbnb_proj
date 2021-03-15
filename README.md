@@ -37,5 +37,27 @@ Clean the data up so that it was usable for our model. I made the following chan
 *	Removed 16 rows with missing data.  
 *	Made a column for the length of the 'name' column.  
 
+## Exploratory Data Analysis (EDA)
+Below are a few tables and graphs I made. Try to find out the connections and relations in this dataset. 
 
+**Correlations :**      
+<img src="https://github.com/JohnnyHsieh1020/NYC_airbnb_proj/blob/main/Correlations.png" width="200">
+
+**Neighbourhood group :**      
+<img src="https://github.com/JohnnyHsieh1020/NYC_airbnb_proj/blob/main/neighbourhood_group.png" width="200">
+
+**Neighborhood Top 20 :**      
+<img src="https://github.com/JohnnyHsieh1020/NYC_airbnb_proj/blob/main/neighbourhood.png" width="200">
+
+**Room Type :**      
+<img src="https://github.com/JohnnyHsieh1020/NYC_airbnb_proj/blob/main/room_type.png" width="200">
+
+**Price by Neighborhood group :**      
+<img src="https://github.com/JohnnyHsieh1020/NYC_airbnb_proj/blob/main/price_by_ne_group.png" width="200">
+
+**Word Cloud (Name) :**  
+<img src="https://github.com/JohnnyHsieh1020/NYC_airbnb_proj/blob/main/wordcloud_name.png" width="200">
+
+**Word Cloud (Neighbourhood) :**  
+<img src="https://github.com/JohnnyHsieh1020/NYC_airbnb_proj/blob/main/wordcloud_neighbourhood.png" width="200">
  
