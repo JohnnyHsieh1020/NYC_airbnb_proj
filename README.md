@@ -1,5 +1,5 @@
 # NYC_airbnb_proj  
-* The dataset describes the listing activity and metrics in NYC, NY for 2019 whichis from [Kaggle](https://www.kaggle.com/dgomonov/new-york-city-airbnb-open-data).
+* The dataset describes the listing activity and metrics in NYC, NY for 2019 which is from [Kaggle](https://www.kaggle.com/dgomonov/new-york-city-airbnb-open-data).
 * Created Linear, Lasso, Random Forest, and Decision Tree Regressors to predict the rental price
 * Compare these models and reach the best model.
 
