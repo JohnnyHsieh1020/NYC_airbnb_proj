@@ -7,8 +7,8 @@
 **Dataset from :** https://www.kaggle.com/dgomonov/new-york-city-airbnb-open-data  
 **Python Version :** Python 3.7.4  
 **IDE :** Spyder, Jupyter Notebook  
-**Packages :** pandas, numpy, matplotlib, seaborn, dataframe_image, WordCloud, sklearn
-**Reference websites :** 
+**Packages :** pandas, numpy, matplotlib, seaborn, dataframe_image, WordCloud, sklearn  
+**Reference websites :**
 1. https://www.kaggle.com/duygut/airbnb-nyc-price-prediction  
 2. https://seaborn.pydata.org/generated/seaborn.scatterplot.html
 3. https://blog.csdn.net/zyb228/article/details/100897145
@@ -73,9 +73,9 @@ Below are a few tables and graphs I made. Try to find out the connections and re
     * Linear Regression: NMAE = -64.80  
     * Lasso Regression: NMAE = -64.79
     * Random Forest: NMAE = -60.36
-    * Decision Tree Regressor: -58.64
+    * Decision Tree Regressor: NMAE = -58.64
 4. I also used GridsearchCV to find out the best group of parameters that can optimize the Decision Tree Regressor model.
-    * GridsearchCV & Decision Tree Regressor: -57.96
+    * GridsearchCV & Decision Tree Regressor: NMAE =  -57.96
 
 ## Model performance
 Below are the results. Using GridsearchCV & Decision Tree Regressor has the best performance.  
