@@ -82,7 +82,7 @@ Below are a few tables and graphs I made. Try to find out the connections and re
 Below are the results. Using GridsearchCV to optimize Random Forest model has the best performance.  
 * Linear Regression: MAE = 66.34
 * Lasso Regression: MAE = 66.33
-* Random Forest: MAE = 60.953719964861605
+* Random Forest: MAE = 60.95
 * GridsearchCV & Random Forest: MAE = 56.94
 * Decision Tree Regressor: MAE = 59.96
 * GridsearchCV & Decision Tree Regressor: MAE = 58.60
