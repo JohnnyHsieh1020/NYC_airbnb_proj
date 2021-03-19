@@ -64,7 +64,7 @@ from sklearn.ensemble import RandomForestRegressor
 
 rf = RandomForestRegressor()
 rf.fit(X_train,y_train)
-np.mean(cross_val_score(rf,X_train,y_train,scoring = 'neg_mean_absolute_error', cv= 3)) # NMAE = -60.36060366663539
+np.mean(cross_val_score(rf,X_train,y_train,scoring = 'neg_mean_absolute_error', cv= 3)) # NMAE = -60.443919303573665
 
 # Decision Tree Regressor
 from sklearn.tree import DecisionTreeRegressor
@@ -72,42 +72,64 @@ dtr = DecisionTreeRegressor(min_samples_leaf=.01)
 dtr.fit(X_train,y_train)
 np.mean(cross_val_score(dtr,X_train,y_train, scoring = 'neg_mean_absolute_error', cv = 3)) # NMAE = -58.64131895872581
 
-# GridsearchCV & Decision Tree Regressor
+# GridsearchCV & Random Forest
 from sklearn.model_selection import GridSearchCV
-from sklearn.pipeline import make_pipeline
 
-depths = np.arange(1, 10)
-num_leafs = [1, 5, 10, 15, 20]
-pipe_tree = make_pipeline(DecisionTreeRegressor())
-parameters = [{'decisiontreeregressor__max_depth':depths,
-              'decisiontreeregressor__min_samples_leaf':num_leafs}]
-gs = GridSearchCV(estimator = pipe_tree, param_grid = parameters, scoring = 'neg_mean_absolute_error',cv = 3)
-gs.fit(X_train,y_train)
+num_estimators = np.arange(1,10)
+depths = np.arange(1,10)
+num_leafs = np.arange(1,10)
+max_features = ['auto', 'log2', 'sqrt']
+rf_parameters = [{
+                 'n_estimators': num_estimators,
+                 'max_depth' : depths,
+                 'min_samples_leaf' : num_leafs,
+                 'max_features' : max_features}]
 
-gs.best_score_ # -57.95886783391725
-gs.best_estimator_
-# Pipeline(memory=None,
-#          steps=[('decisiontreeregressor',
-#                  DecisionTreeRegressor(criterion='mse', max_depth=8,
-#                                        max_features=None, max_leaf_nodes=None,
-#                                        min_impurity_decrease=0.0,
-#                                        min_impurity_split=None,
-#                                        min_samples_leaf=10, min_samples_split=2,
-#                                        min_weight_fraction_leaf=0.0,
-#                                        presort=False, random_state=None,
-#                                        splitter='best'))],verbose=False)
+rf_gs = GridSearchCV(RandomForestRegressor(), rf_parameters, scoring = 'neg_mean_absolute_error', cv = 3)
+rf_gs.fit(X_train,y_train)
+
+rf_gs.best_score_ # -56.048108459722435
+rf_gs.best_estimator_
+# RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=9,
+#                       max_features='auto', max_leaf_nodes=None,
+#                       min_impurity_decrease=0.0, min_impurity_split=None,
+#                       min_samples_leaf=9, min_samples_split=2,
+#                       min_weight_fraction_leaf=0.0, n_estimators=9, n_jobs=None,
+#                       oob_score=False, random_state=None, verbose=0,
+#                       warm_start=False)
+
+# GridsearchCV & Decision Tree Regressor
+depths = np.arange(1,10)
+num_leafs = np.arange(1,10)
+dt_parameters = [{'max_depth' : depths,
+                  'min_samples_leaf' : num_leafs}]
+
+dt_gs = GridSearchCV(DecisionTreeRegressor(), dt_parameters, scoring = 'neg_mean_absolute_error',cv = 3)
+dt_gs.fit(X_train,y_train)
+
+dt_gs.best_score_ # -57.86494271844868
+dt_gs.best_estimator_
+# DecisionTreeRegressor(criterion='mse', max_depth=8, max_features=None,
+#                       max_leaf_nodes=None, min_impurity_decrease=0.0,
+#                       min_impurity_split=None, min_samples_leaf=9,
+#                       min_samples_split=2, min_weight_fraction_leaf=0.0,
+#                       presort=False, random_state=None, splitter='best')
+
 
 # Predict
 tpred_lm = lm.predict(X_test)
 tpred_lml = lm_l.predict(X_test)
 tpred_rf = rf.predict(X_test)
+tpred_rf_gs = rf_gs.best_estimator_.predict(X_test)
 tpred_dtr = dtr.predict(X_test)
-tpred_dtr_gs = gs.best_estimator_.predict(X_test)
+tpred_dtr_gs = dt_gs.best_estimator_.predict(X_test)
 
+# Performance
 from sklearn.metrics import mean_absolute_error
 
 mean_absolute_error(y_test,tpred_lm) # Linear Regression, MAE = 66.33930418823329
 mean_absolute_error(y_test,tpred_lml) # Lasso Regression, MAE = 66.332949607733
-mean_absolute_error(y_test,tpred_rf) # Random Forest, MAE = 60.94088105473147
+mean_absolute_error(y_test,tpred_rf) # Random Forest, MAE = 60.953719964861605
+mean_absolute_error(y_test,tpred_rf_gs) # GridsearchCV & Random Forest, MAE = 56.940950944644406
 mean_absolute_error(y_test,tpred_dtr) # Decision Tree Regressor, MAE = 59.959636525602555
-mean_absolute_error(y_test,tpred_dtr_gs) # GridsearchCV & Decision Tree Regressor, MAE = 58.57245099686004
+mean_absolute_error(y_test,tpred_dtr_gs) # GridsearchCV & Decision Tree Regressor, MAE = 58.603089023498626
