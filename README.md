@@ -74,13 +74,15 @@ Below are a few tables and graphs I made. Try to find out the connections and re
     * Lasso Regression: NMAE = -64.79
     * Random Forest: NMAE = -60.36
     * Decision Tree Regressor: NMAE = -58.64
-4. I also used GridsearchCV to find out the best group of parameters that can optimize the Decision Tree Regressor model.
-    * GridsearchCV & Decision Tree Regressor: NMAE =  -57.96
+4. I also used GridsearchCV to find out the best group of parameters that can optimize the Random Forest and Decision Tree Regressor model.
+    * GridsearchCV & Random Forest: NMAE =  -56.05
+    * GridsearchCV & Decision Tree Regressor: NMAE =  -57.86
 
 ## Model performance
-Below are the results. Using GridsearchCV & Decision Tree Regressor has the best performance.  
+Below are the results. Using GridsearchCV to optimize Random Forest model has the best performance.  
 * Linear Regression: MAE = 66.34
 * Lasso Regression: MAE = 66.33
-* Random Forest: MAE = 60.94
+* Random Forest: MAE = 60.953719964861605
+* GridsearchCV & Random Forest: MAE = 56.94
 * Decision Tree Regressor: MAE = 59.96
-* GridsearchCV & Decision Tree Regressor: MAE = 58.57
+* GridsearchCV & Decision Tree Regressor: MAE = 58.60
